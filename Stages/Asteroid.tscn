@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Stages/OutlinedPolygon2D.tscn" type="PackedScene" id=1]
+
+[node name="Asteroid" type="KinematicBody2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -20, -20, 0, -30, 10, -30, 20, -20, 30, -10, 30, 0, 20, 10, 20, 20, 0, 30, -10, 30, -20, 20, -30, 10, -30, 0, -20, -10 )
+
+[node name="OutlinedPolygon2D" parent="." instance=ExtResource( 1 )]
+polygon = PoolVector2Array( -20, -20, 0, -30, 10, -30, 20, -20, 30, -10, 30, 0, 20, 10, 20, 20, 0, 30, -10, 30, -20, 20, -30, 10, -30, 0, -20, -10 )
+OutLine = Color( 1, 1, 1, 1 )
+Width = 2.0

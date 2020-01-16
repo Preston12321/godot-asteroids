@@ -1,0 +1,81 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scripts/Background.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Ship.gd" type="Script" id=2]
+[ext_resource path="res://Stages/OutlinedPolygon2D.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Stages/Asteroid.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/Asteroid.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Wall.gd" type="Script" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 20, 300 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 512, 20 )
+
+[node name="Root" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+editor_draw_limits = true
+
+[node name="Background" type="CanvasLayer" parent="."]
+script = ExtResource( 1 )
+
+[node name="Stage" type="CanvasLayer" parent="."]
+
+[node name="Ship" type="Area2D" parent="Stage"]
+editor/display_folded = true
+position = Vector2( 512, 300 )
+script = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Stage/Ship"]
+position = Vector2( 0, -3.3 )
+polygon = PoolVector2Array( 0, -10, -10, 10, 10, 10 )
+
+[node name="OutlinedPolygon2D" parent="Stage/Ship" instance=ExtResource( 3 )]
+position = Vector2( 0, -3.3 )
+polygon = PoolVector2Array( 0, -10, -10, 10, 10, 10 )
+OutLine = Color( 1, 1, 1, 1 )
+Width = 2.0
+
+[node name="Asteroid" parent="Stage" instance=ExtResource( 4 )]
+position = Vector2( 250, 175.147 )
+script = ExtResource( 5 )
+
+[node name="Walls" type="Node" parent="Stage"]
+
+[node name="LeftWall" type="Area2D" parent="Stage/Walls"]
+editor/display_folded = true
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stage/Walls/LeftWall"]
+position = Vector2( 0, 300 )
+shape = SubResource( 1 )
+
+[node name="RightWall" type="Area2D" parent="Stage/Walls"]
+editor/display_folded = true
+position = Vector2( 1024, 0 )
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stage/Walls/RightWall"]
+position = Vector2( 0, 300 )
+shape = SubResource( 1 )
+
+[node name="UpperWall" type="Area2D" parent="Stage/Walls"]
+editor/display_folded = true
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stage/Walls/UpperWall"]
+position = Vector2( 512, 0 )
+shape = SubResource( 2 )
+
+[node name="LowerWall" type="Area2D" parent="Stage/Walls"]
+editor/display_folded = true
+position = Vector2( 0, 600 )
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stage/Walls/LowerWall"]
+position = Vector2( 512, 0 )
+shape = SubResource( 2 )

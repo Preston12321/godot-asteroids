@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "# Code found at https://godotengine.org/qa/3963/is-it-possible-to-have-a-polygon2d-with-outline
+# Author: kakoeimon on Godot Engine Q&A
+# Edited by Preston Locke
+
+tool
+extends Polygon2D
+
+export(Color) var OutLine = Color(0,0,0) setget set_color
+export(float) var Width = 2.0 setget set_width
+
+func _draw():
+	var poly = get_polygon()
+	
+	if (poly.size() < 3):
+		return
+	
+	for i in range(0 , poly.size() - 1):
+		draw_line(poly[i] , poly[i+1], OutLine , Width)
+	draw_line(poly[poly.size() - 1] , poly[0], OutLine , Width)
+
+func set_color(color):
+	OutLine = color
+	update()
+
+func set_width(new_width):
+	Width = new_width
+	update()"
+
+[node name="OutlinedPolygon2D" type="Polygon2D"]
+color = Color( 0, 0, 0, 0 )
+antialiased = true
+script = SubResource( 1 )

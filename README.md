@@ -1,0 +1,23 @@
+## TODO
+ - [ ] Ship
+   - [X] Code movement
+   - [ ] Fine tune acceleration/deceleration and max speed
+   - [ ] Find size scale that feels right
+ - [ ] Missiles
+   - [ ] Make basic asset with collider
+   - [ ] Code user-prompted firing and movement across stage
+ - [ ] Asteroids
+   - [X] Make basic asset with collider
+   - [ ] Make multiple levels
+   - [ ] Code splitting upon collision with missiles or other asteroids
+ - [ ] Walls
+   - [X] Place collider boxes around edge of play area
+   - [ ] Make sure walls are always in the right place on screen
+   - [ ] Code looping objects around to the other side of the stage when near
+     - [ ] Handle special case where object collides with multiple wall areas
+ - [ ] UI
+   - [ ] HUD
+   - [ ] Score results
+   - [ ] Pause menu
+   - [ ] Main menu
+ - [ ] Handle different screen sizes/window scaling
